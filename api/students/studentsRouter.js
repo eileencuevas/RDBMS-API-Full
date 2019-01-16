@@ -9,7 +9,9 @@ const router = express.Router();
 
 router.get('/:id', (req, res) => {
     db('students')
-        .where({ id: req.params.id })
+        .leftJoin('cohorts', { 'students.cohort_id' : 'cohorts.id' })
+        .select('students.id', 'students.name', 'cohorts.name as cohort')
+        .where({ 'students.id': req.params.id })
         .then(student => {
             if (student.length > 0) {
                 res.status(200).json(student);
@@ -24,8 +26,10 @@ router.get('/:id', (req, res) => {
 
 router.get('/', (req, res) => {
     db('students')
-        .then(students => {
-            res.status(200).json(students);
+        .leftJoin('cohorts', {'students.cohort_id': 'cohorts.id'})
+        .select(['students.id', 'students.name', 'cohorts.name as cohort'])
+        .then(student => {
+            res.status(200).json(student)
         })
         .catch(() => {
             res.status(500).json({ error: 'Could not load Students. Try again.' });
