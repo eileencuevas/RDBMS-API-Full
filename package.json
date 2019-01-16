@@ -1,0 +1,28 @@
+{
+  "name": "RDBMS-API-Full",
+  "version": "1.0.0",
+  "description": "## Topics",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eileencuevas/RDBMS-API-Full.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eileencuevas/RDBMS-API-Full/issues"
+  },
+  "homepage": "https://github.com/eileencuevas/RDBMS-API-Full#readme",
+  "devDependencies": {
+    "nodemon": "^1.18.9"
+  },
+  "dependencies": {
+    "knex": "^0.16.3",
+    "sqlite3": "^4.0.6"
+  }
+}
