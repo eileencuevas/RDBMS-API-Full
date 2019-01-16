@@ -48,4 +48,15 @@ server.get('/api/cohorts/', (req, res) => {
         });
 })
 
+server.post('/api/cohorts/', (req, res) => {
+    db('cohorts')
+        .insert(req.body)
+        .then(ids => {
+            res.status(201).json(ids);
+        })
+        .catch(() => {
+            res.status(500).json({ error: 'Could not add cohorts. Please include a name.' });
+        });
+})
+
 server.listen(5000, () => console.log('server running on 5000'));
