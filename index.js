@@ -59,4 +59,20 @@ server.post('/api/cohorts/', (req, res) => {
         });
 })
 
+server.put('/api/cohorts/:id', (req, res) => {
+    db('cohorts')
+        .where({ id: req.params.id  })
+        .update(req.body)
+        .then(success => {
+            if (success) {
+                res.status(200).json(success);
+            } else {
+                res.status(404).json({ error: 'No Cohort found with that ID.' });
+            }
+        })
+        .catch(() => {
+            res.status(500).json({ error: 'Could not load cohorts. Try again.' });
+        });
+})
+
 server.listen(5000, () => console.log('server running on 5000'));
